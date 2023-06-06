@@ -15,15 +15,13 @@ const Canvas = () => {
 
     const changeColor = (newColor) => {
         setBrushColor(newColor);
-        canvasDetails.color = brushColor;
+        canvasDetails.color = newColor;
     }
     const changeBrushSize = (newBrushSize) => {
-        canvasDetails.socket.emit('setBrush');
-        changeBrushRadius(newBrushSize);
+         setBrushRadius(newBrushSize);
+         canvasDetails.lineWidth = brushRadius;
     }
     const eraser = () => {
-        const canvas = document.getElementById('canvas');
-        const context = canvas.getContext('2d');
         canvasDetails.lineWidth = 10;
         canvasDetails.color = "black";
     }
@@ -35,27 +33,19 @@ const Canvas = () => {
         context.globalCompositeOperation = 'source-over';
     }
     const clear = () => {
-        clearCanvas();
-    }
-
-    function clearCanvas() {
-        const canvas = document.getElementById('canvas');
-        const context = canvas.getContext('2d');
-        context.clearRect(0, 0, canvas.width, canvas.height);
-    }
-
-
-    function changeBrushRadius(newBrushSize) {
-        setBrushRadius(newBrushSize);
-        canvasDetails.lineWidth = brushRadius;
+       const canvas = document.getElementById("canvas");
+       const context = canvas.getContext("2d");
+       context.clearRect(0, 0, canvas.width, canvas.height);
     }
 
     useEffect(() => {
 
         canvasDetails.socketUrl = 'http://localhost:5000';
         canvasDetails.socket = io.connect(canvasDetails.socketUrl, () => {
-            // console.log('connecting to server')
         })
+
+        console.log(canvasDetails);
+
         canvasDetails.socket.on('image-data', (data) => {
             const image = new Image()
             const canvas = document.getElementById('canvas');
@@ -70,7 +60,7 @@ const Canvas = () => {
 
     useEffect(() => {
         const mouseMoveHandler = (e, type) => {
-           // console.log(e)
+           console.log(e)
             const event = type === 'touch' ? e.touches[0] : e;
             findxy('move', event)
         }
@@ -150,14 +140,7 @@ const Canvas = () => {
         canvas.addEventListener("touchmove", (e) => mouseMoveHandler(e, 'touch'), { passive: true });
         canvas.addEventListener("touchstart", (e) => mouseDownHandler(e, 'touch'), { passive: true });
         canvas.addEventListener("touchend", (e) => mouseUpHandler(e, 'touch'));
-        canvas.addEventListener("dblclick", onSave);
-
-        return () => {
-            canvas.removeEventListener("mousemove", mouseMoveHandler);
-            canvas.removeEventListener("mousedown", mouseDownHandler);
-            canvas.removeEventListener("mouseup", mouseUpHandler);
-            canvas.removeEventListener("dblclick", onSave);
-        }
+      
     }, [])
 
     return (
