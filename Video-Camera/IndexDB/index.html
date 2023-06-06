@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      DBName:
+      <input id="dbName" type="text" />
+    </div>
+    <div>
+      DBVersion:
+      <input id="dbVersion" type="text" />
+    </div>
+    <button id="openDB">Open Database</button>
+
+    <div>
+      MediaID:
+      <input id="mid" type="text" />
+    </div>
+    <div>
+      MediaType:
+      <input id="mediatype" type="text" />
+    </div>
+
+    
+
+    <button id="addmedia">Add media</button>
+
+    <button id="showmedia">Show media</button>
+  </body>
+
+  <script>
+    let dbName = document.getElementById("dbName");
+    let dbVersion = document.getElementById("dbVersion");
+    let openButton = document.getElementById("openDB");
+
+    let mid = document.getElementById("mid");
+    let mediaType = document.getElementById("mediatype");
+    let addMediaButton = document.getElementById("addmedia");
+    let showmediaButton = document.getElementById("showmedia");
+
+    openButton.addEventListener("click", openDB);
+
+    addMediaButton.addEventListener("click", addMedia);
+
+    showmediaButton.addEventListener("click", showmedia);
+
+    let db;
+
+
+    function showmedia(){
+      let txnobject = db.transaction("Media", "readonly");
+      let mediaTable = txnobject.objectStore("Media");
+
+
+      let cursorObject = mediaTable.openCursor(); // to iterate over all the rows/tuples
+
+      cursorObject.onsuccess = function(e) {
+        let cursor = cursorObject.result;
+        if(cursor){
+            console.log(cursor.value);
+            cursor.continue();
+        }
+
+      }
+
+
+    }
+
+    function addMedia() {
+      let txnobject = db.transaction("Media", "readwrite"); // start  transaction on media table
+      let mediaTable = txnobject.objectStore("Media"); // get access to media table
+
+      mediaTable.add({ mid: mid.value, type: mediaType.value });
+
+      txnobject.onerror = function (e) {
+        console.log("transaction failed");
+        console.log(e)
+      };
+    }
+
+    function openDB() {
+        console.log("inside opendb");
+      let dbOpenRequest = indexedDB.open(dbName.value, dbVersion.value);
+
+      
+      dbOpenRequest.onupgradeneeded = function (e) {
+        alert("Inside on upgrade");
+         db=e.target.result;
+          console.log(db);
+         db.createObjectStore("Media",{keyPath : "mid"});
+      };
+      dbOpenRequest.onsuccess = function (e) {
+        alert("Inside on success");
+         db=e.target.result;
+      };
+      dbOpenRequest.onerror = function (e) {
+        alert("Inside on error");
+      };
+    }
+  </script>
+</html>

@@ -1,0 +1,64 @@
+
+body{
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f0f7f7;
+  padding-top: 52px !important;
+}
+.btn-primary , .bg-primary{
+  background: linear-gradient(45deg,black,blueviolet);
+}
+.btn-secondary , .bg-secondary{
+  background: linear-gradient(45deg,black,purple);
+}
+.btn-success , .bg-success{
+  background: linear-gradient(45deg,black,limegreen);
+}
+.btn-like{
+  background: linear-gradient(45deg,rgb(0, 0, 0),rgba(5, 170, 5, 0.575));
+}
+.btn-info , .bg-info{
+  background: linear-gradient(45deg,black,lightblue);
+}
+.btn-warning , .bg-warning{
+  background: linear-gradient(45deg,black,orange);
+}
+.bg-comment{
+  background: linear-gradient(45deg,white,rgb(124, 122, 5));
+}
+.btn-danger , .bg-danger{
+  background: linear-gradient(45deg,black,red);
+}
+.btn-light , .bg-light{
+  background: linear-gradient(45deg,darkgray,gray);
+}
+.btn-dark , .bg-dark{
+  background: linear-gradient(45deg,black,darkslategray);
+}
+
+
+.landing-page{
+  background: white url("https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") no-repeat scroll center;
+  background-size: cover;
+  height: 100vh;
+  color: #c8cfcf;
+}
+.wrapper{
+  background-color: rgba(0,0,0,0.7);
+  height: 100%;
+}
+
+.btn-teal , .bg-teal{
+  background-color: #008080 !important;
+}
+.text-teal{
+  color: #114444 !important;
+}
+.bg-light-grey{
+  background: linear-gradient(45deg,darkgrey,#add8e6) !important;
+}
+.profile-img{
+  box-shadow: 0 0 10px black;
+}
+table{
+  box-shadow: 0 0 2px #114444;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Camera</title>
+</head>
+<body>
+    <div class="video-container">
+        <video autoplay></video>
+    </div>
+    <div class="video-filters">
+        <div class="filter" style="background-color : rgba(255,255,0,0.2)"></div>
+        <div class="filter" style="background-color : rgba(102,0,255,0.2)"></div>
+        <div class="filter" style="background-color : rgba(0,255,153,0.2)"></div>
+        <div class="filter" style="background-color : rgba(0,153,255,0.2)"></div>
+        <div class="filter" style="background-color : rgba(255,0,0,0.2)"></div>
+        <div class="filter"></div>
+    </div>
+
+
+    <div class="controls">
+        <div class="zoom">
+            <div class="zoomIn">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+            <div class="zoomOut">
+                <i class="fa-solid fa-minus"></i>
+            </div>
+        </div>
+        <div id="record">
+            <div class="inner-record"></div>
+        </div>
+        <div id="capture">
+            <div class="inner-capture"></div>
+        </div>
+        <div class="gallery-btn">Gallery</div>
+    </div>
+
+     <script src="./db.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>

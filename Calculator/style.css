@@ -1,0 +1,80 @@
+*{
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: red; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+body{
+  background-image: linear-gradient(
+    to right,
+    rgb(101, 1, 110),
+    rgb(253, 10, 83)
+  );
+}
+
+.calculator-grid{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+    grid-template-columns: repeat(4,100px);
+    grid-template-rows: 120px repeat(5,100px);
+}
+
+.calculator-grid > button{
+    cursor: pointer;
+    font-size: 2rem;
+    border : 1px solid purple;
+    background-color:rgba(255,100,228,0.75);
+}
+
+.calculator-grid > button:hover{
+    background-color:rgba(255,255,255,0.9);
+}
+
+.span-two{
+    grid-column: span 2;
+}
+.span-four{
+    grid-column: span 4;
+}
+
+.output{      
+    background-color:rgba(0,0,0,0.75);
+    color: rgba(255,255,255,0.9);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding:10px;
+    word-break: break-all;
+    overflow-y:scroll;
+}
+
+.output .previous-operand{
+    color:rgba(255,255,255,0.8);
+    font-size: 1.5rem;
+}
+
+.output .current-operand{
+    color:white;
+    font-size: 2.5rem;
+}
